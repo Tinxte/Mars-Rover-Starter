@@ -6,8 +6,11 @@ const Command = require('../command.js');
 //       However, do NOT edit the grading tests for any reason and make sure to un-comment out your code to get the autograder to pass.
 
 
-describe("Rover class", function() {
+// Test 7: constructor sets position and default values for mode and generatorWatts
 
-  // 7 tests here!
+describe("Rover class", function() {
+  it('constructor sets position and default values for mode and generatorWatts', function () {
+      expect().ToBe()
+  });
 
 });
