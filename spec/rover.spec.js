@@ -24,11 +24,10 @@ describe("Rover class", function() {
   let message = new Message('Test message with two commands', commands);
   let testRover = new Rover(98382)
     it('response returned by receiveMessage contains the name of the message', function () {
-    expect(testRover.receiveMessage(message)).toContain('Test message with two commands');
+    expect(testRover.receiveMessage(message)["message"]).toContain('Test message with two commands');
   });
 });
 
-//TODO 
 // Test 9: “response returned by receiveMessage includes two results if two commands are sent in the message”
 
 describe("Rover class", function() {
@@ -36,6 +35,18 @@ describe("Rover class", function() {
   let message = new Message('Test message with two commands', commands);
   let testRover = new Rover(98382)
     it('response returned by receiveMessage includes two results if two commands are sent in the message', function () {
-    expect(testRover.receiveMessage(message)).toBe('Test message with two commands');
+    expect(testRover.receiveMessage(message).results.length).toEqual(commands.length);
+  });
+});
+
+// TODO 
+// Test 10: “responds correctly to the status check command”
+
+describe("Rover class", function() {
+  let commands = [new Command('STATUS_CHECK')];
+  let message = new Message('Testing Status Check', commands);
+  let testRover = new Rover(98382)
+    it('responds correctly to the status check command', function () {
+    expect(testRover.receiveMessage(message).results).toContain({roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 98382}});
   });
 });
