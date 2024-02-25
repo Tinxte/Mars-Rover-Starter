@@ -39,7 +39,6 @@ describe("Rover class", function() {
   });
 });
 
-// TODO 
 // Test 10: “responds correctly to the status check command”
 
 describe("Rover class", function() {
@@ -47,6 +46,10 @@ describe("Rover class", function() {
   let message = new Message('Testing Status Check', commands);
   let testRover = new Rover(98382)
     it('responds correctly to the status check command', function () {
-    expect(testRover.receiveMessage(message).results).toContain({roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 98382}});
+    // expect(testRover.receiveMessage(message).results).toContain({roverStatus: {mode: 'NORMAL', generatorWatts: 110, position: 98382}});
+    expect(testRover.receiveMessage(message).results[0].roverStatus).toEqual({mode: 'NORMAL', generatorWatts: 110, position: 98382});
   });
 });
+
+// TODO 
+// Test 11: 

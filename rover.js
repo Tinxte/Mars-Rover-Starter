@@ -6,20 +6,53 @@ class Rover {
       this.mode = "NORMAL";
       this.generatorWatts = 110
    }
+   
    receiveMessage(message) {
       let msg = message.name;
       let roverCommands = message.commands
       let results = [];
 
+      //Mode_change function
+      for (let i = 0; i < roverCommands.length; i++) {
+               if (roverCommands[i].commandType === "MODE_CHANGE") {
+                  let completedStatus = {
+                     completed: true
+                  }
+               this.mode = roverCommands[i].value
+                results.push(completedStatus);
+               }}
+
+      //Status Check function
       for (let i = 0; i < roverCommands.length; i++) {
          if (roverCommands[i].commandType === "STATUS_CHECK") {
-            testVariable = "includes status check";
-      //  } else testVariable = "does not work"; 
-         }
+         
+            let roverStatus = {
+               mode: this.mode,
+               generatorWatts: this.generatorWatts,
+               position: this.position
+               };
+            let statusCheck = {
+                  completed: true,   
+                  roverStatus: roverStatus
+               }
+               results.push(statusCheck);
+         }}
+
+         //TODO see if this works (statuscheck roverstatus object)
+      // let completedStatus = {
+      //    completed: true
+      // }
       
+      //    let roverStatus = {
+      //    position: this.position,
+      //    mode: this.mode,
+      //    generatorWatts: this.generatorWatts
+      // }
+
       let response = {
          message: msg,
-         results: [roverCommands[0], roverCommands[1]]}
+         results: results,
+     }
          return response;
    }}
 
