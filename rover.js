@@ -22,6 +22,24 @@ class Rover {
                 results.push(completedStatus);
                }}
 
+       // Check if in low_power mode and return false for movement
+       for (let i = 0; i < roverCommands.length; i++) {
+         if (roverCommands[i].commandType === "MOVE") {
+            if (this.mode === "NORMAL") {
+            let completedStatus = {
+               completed: true
+            };
+            results.push(completedStatus);
+         }
+            else if (this.mode === "LOW_POWER") {
+               let completedStatus = {
+                  completed: false
+               }
+            results.push(completedStatus);
+            }
+         }}
+
+
       //Status Check function
       for (let i = 0; i < roverCommands.length; i++) {
          if (roverCommands[i].commandType === "STATUS_CHECK") {
@@ -37,17 +55,6 @@ class Rover {
                }
                results.push(statusCheck);
          }}
-
-         //TODO see if this works (statuscheck roverstatus object)
-      // let completedStatus = {
-      //    completed: true
-      // }
-      
-      //    let roverStatus = {
-      //    position: this.position,
-      //    mode: this.mode,
-      //    generatorWatts: this.generatorWatts
-      // }
 
       let response = {
          message: msg,
