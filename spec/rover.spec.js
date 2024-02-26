@@ -69,7 +69,7 @@ describe("Rover class", function() {
     expect(secondRover.receiveMessage(secondMessage).results).toEqual([{"completed": true}]);
     expect(secondRover.mode).toBe("NORMAL");
   });
-})
+});
 
 // Test 12: “responds with a false completed value when attempting to move in LOW_POWER mode”
 
@@ -81,7 +81,18 @@ describe("Rover class", function() {
   it('responds with a false completed value when attempting to move in LOW_POWER mode', function () {
     expect(testRover.receiveMessage(message).results[1]).toEqual({"completed": false});
   });
-})
+});
 
 // TODO 
-// Test 13: 
+// Test 13: responds with the position for the move command
+
+describe("Rover class", function() {
+  let commands = [new Command('MOVE', 999)];
+  let message = new Message('Testing move command', commands);
+  let testRover = new Rover(98382);
+  testRover.receiveMessage(message)
+
+  it('responds with the position for the move command', function () {
+    expect(testRover.position).toEqual(999);
+  });
+})

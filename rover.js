@@ -20,15 +20,16 @@ class Rover {
                   }
                this.mode = roverCommands[i].value
                 results.push(completedStatus);
-               }}
+               }};
 
-       // Check if in low_power mode and return false for movement
+       // Move command; Check if in low_power mode and return false for movement
        for (let i = 0; i < roverCommands.length; i++) {
          if (roverCommands[i].commandType === "MOVE") {
             if (this.mode === "NORMAL") {
             let completedStatus = {
                completed: true
             };
+            this.position = roverCommands[i].value;
             results.push(completedStatus);
          }
             else if (this.mode === "LOW_POWER") {
@@ -37,7 +38,7 @@ class Rover {
                }
             results.push(completedStatus);
             }
-         }}
+         }};
 
 
       //Status Check function
@@ -54,7 +55,7 @@ class Rover {
                   roverStatus: roverStatus
                }
                results.push(statusCheck);
-         }}
+         }};
 
       let response = {
          message: msg,
