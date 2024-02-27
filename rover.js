@@ -13,7 +13,6 @@ class Rover {
        let testVariable;
        let results = [];
 
-
   for (let i= 0; i <roverCommands.length; i++) {
 
     //Mode_change function
@@ -56,7 +55,6 @@ class Rover {
               }
               results.push(statusCheck);
         }}
-
 
       let response = {
          message: msg,
