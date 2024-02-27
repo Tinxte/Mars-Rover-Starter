@@ -83,16 +83,15 @@ describe("Rover class", function() {
   });
 });
 
-// TODO 
 // Test 13: responds with the position for the move command
 
 describe("Rover class", function() {
-  let commands = [new Command('MOVE', 999)];
+  let commands = [new Command('MOVE', 4321)];
   let message = new Message('Testing move command', commands);
   let testRover = new Rover(98382);
   testRover.receiveMessage(message)
 
   it('responds with the position for the move command', function () {
-    expect(testRover.position).toEqual(999);
+    expect(testRover.position).toEqual(4321);
   });
 })
